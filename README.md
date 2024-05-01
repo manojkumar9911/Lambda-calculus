@@ -21,10 +21,10 @@ Substitution
 [x → s](λy.t1) = λy.[x → s]t1               -- if y ≠ x and y ∉ FV(s)
 [x → s](t1 t2) = ([x → s]t1 ([x → s]t2)
 Boolean Definitions
-tru = λt. λf. t;
-fls = λt. λf. f;
-tru t f = t
-fls t f = f
+true = λx. λy. x;
+false = λx. λy. y;
+true a b = a
+false a b = b
 tests
 test = λl. λm. λn. l m n;
 
@@ -40,12 +40,20 @@ Reducing Test term
  = (λt.λf.t) v w                    by definition
  → (λf. v) w
  → v
-Logical Ops
-and = λb. λc.b c fls;
+Logical Operators
+# AND
+and = λa. λb. a b false;
 
-and1 p q = p q fls   -- if p then q   else fls
-or1  p q = p tru q   -- if p then tru else q
-not1 p   = p fls tru -- if p then fls else tru
+# OR
+aor = λa. λb. a true b;
+
+# XOR
+xor = λa. λb. a (not b) b;
+
+# NOT
+not = λa. a false true;
+
+
 Pairs
 pair = λf.λs.λb. b f s;
 fst = λp. p tru;
@@ -55,6 +63,7 @@ Pair v w is a function that, when applied to a boolean value b, applies b to v a
 pair f s b = b f s
 fst p = p tru
 snd p = p fls
+
 Reducing fst
   fst (pair v w)
 = fst ((λf.λs.λb.b f s) v w)
@@ -64,6 +73,7 @@ Reducing fst
 → (λb.b v w) tru
 → tru v w
 → v
+
 Church Numerals
 For representing numbers by lambda-terms
 A number n is represented by a combinator (one, two, three, etc. below) that takes two arguments, s and z, and applies s, n times, to z.
@@ -94,6 +104,7 @@ scc one
 → λs. λz. (λz. s z)(s z)
 → λs. λz. s (s z)
 = two                                     -- by definition, s applied twice
+
 Addition
 Addition of Church numerals can be performed by a term plus that takes two Church numerals, m and n, as arguments, and yields another Church numeral—i.e., a function—that accepts arguments s and z, applies s iterated n times to z (by passing s and z as arguments to n), and then applies s iterated m more times to the result:
 
