@@ -186,4 +186,6 @@ sub = λm.λn.n pred m
 div = λm.λn.if (isZero n) then (error "Division by zero") else (λf.λx.if (isZero m) then zero else succ (div (pred m) n) f x) 
 '''
 
+divide=λm.λn.if(isZeron)then(λf.λx.x)else(λf.λx.f(divide(submn)n))
+
 Division is little bit complex because we can't divide by 0,we have to return error in this case.
