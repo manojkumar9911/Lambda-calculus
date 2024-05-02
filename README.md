@@ -21,10 +21,13 @@ Substitution
 [x → s](λy.t1) = λy.[x → s]t1               -- if y ≠ x and y ∉ FV(s)
 [x → s](t1 t2) = ([x → s]t1 ([x → s]t2)
 Boolean Definitions
+'''
 true = λx. λy. x;
 false = λx. λy. y;
 true a b = a
 false a b = b
+'''
+
 tests
 test = λl. λm. λn. l m n;
 
@@ -42,16 +45,23 @@ Reducing Test term
  → v
 Logical Operators
 # AND
+'''
 and = λa. λb. a b false;
+'''
 
 # OR
-aor = λa. λb. a true b;
+'''
+or = λa. λb. a true b;
+'''
 
 # XOR
-xor = λa. λb. a (not b) b;
+'''
+ xor = λa. λb. a (not b) b;
+'''
 
 # NOT
-not = λa. a false true;
+''' not = λa. a false true;
+'''
 
 
 Pairs
@@ -160,7 +170,7 @@ prd = λm. fst (m ss zz);
 
 SUBTRACTION:
 A Church numeral n is a function that applies s to z (n times).
-
+subtract = λm. λn. m (λf. λx. n f (f x))
 sub = λm.λn.n pred m
 
 DIVISION:
