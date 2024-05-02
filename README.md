@@ -117,8 +117,9 @@ scc one
 
 Addition
 Addition of Church numerals can be performed by a term plus that takes two Church numerals, m and n, as arguments, and yields another Church numeral—i.e., a function—that accepts arguments s and z, applies s iterated n times to z (by passing s and z as arguments to n), and then applies s iterated m more times to the result:
-
+'''
 plus = λm. λn. λs. λz. m s (n s z);
+'''
 
 We can also think of addition in terms of successor (or increment) function.
 
@@ -132,8 +133,10 @@ three = plus two one
 four  = add two two
 Multiplication
 Multiplying n and m is adding together m copies of n. Notice that, plus m adds m to any given number. If we apply add m n times to zero, we will have added n copies of m.
+'''
+mul = λm. λn. m (plus n) zero;
+'''
 
-times = λm. λn. m (plus n) zero;
 Intuitively, having a s.s.s. ... s of length m, in order to multiply it by n, we should combine n copies of such a chain. Or, if (m s) is a "super-successor" containing m exemplars of s, what we need is
 
 mul n m s z = n (m s) z
@@ -170,12 +173,14 @@ prd = λm. fst (m ss zz);
 
 SUBTRACTION:
 A Church numeral n is a function that applies s to z (n times).
+'''
 subtract = λm. λn. m (λf. λx. n f (f x))
 sub = λm.λn.n pred m
+'''
 
 DIVISION:
 A Church numeral n is a function that applies s to z (n times).
 Division is little bit complex because we can't divide by 0,we have to return error in this case.
-
+'''
 div = λm.λn.if (isZero n) then (error "Division by zero") else (λf.λx.if (isZero m) then zero else succ (div (pred m) n) f x) 
-
+'''
