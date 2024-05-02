@@ -137,6 +137,7 @@ Multiplying n and m is adding together m copies of n. Notice that, plus m adds m
 '''
 mul = λm. λn. m (plus n) zero;
 '''
+mult = λn .λm . (λf . λx . n (m f x))
 
 Intuitively, having a s.s.s. ... s of length m, in order to multiply it by n, we should combine n copies of such a chain. Or, if (m s) is a "super-successor" containing m exemplars of s, what we need is
 
