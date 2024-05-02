@@ -63,8 +63,7 @@ or = λa. λb. a true b;
 ''' not = λa. a false true;
 '''
 
-
-Pairs
+# Pairs
 pair = λf.λs.λb. b f s;
 fst = λp. p tru;
 snd = λp. p fls;
@@ -93,7 +92,8 @@ one   = λs. λz. s z;          -- applies s to z once
 two   = λs. λz. s (s z);      -- applies s twice
 three = λs. λz. s (s (s z));  -- applies s three times
 etc.                          -- and so on...
-Successor
+
+# Successor
 Remember, a Church numeral n is a function that applies s to z (n times).
 
 scc = λn. λs. λz. s (n s z); -- Successor function
@@ -115,7 +115,7 @@ scc one
 → λs. λz. s (s z)
 = two                                     -- by definition, s applied twice
 
-Addition
+# Addition
 Addition of Church numerals can be performed by a term plus that takes two Church numerals, m and n, as arguments, and yields another Church numeral—i.e., a function—that accepts arguments s and z, applies s iterated n times to z (by passing s and z as arguments to n), and then applies s iterated m more times to the result:
 '''
 plus = λm. λn. λs. λz. m s (n s z);
@@ -131,7 +131,8 @@ Now, we can write -
 two   = plus one one
 three = plus two one
 four  = add two two
-Multiplication
+
+# Multiplication
 Multiplying n and m is adding together m copies of n. Notice that, plus m adds m to any given number. If we apply add m n times to zero, we will have added n copies of m.
 '''
 mul = λm. λn. m (plus n) zero;
@@ -171,14 +172,14 @@ zz = pair zero zero
 ss  = λp. pair (snd p) (plus one (snd p));
 prd = λm. fst (m ss zz);
 
-SUBTRACTION:
+# SUBTRACTION:
 A Church numeral n is a function that applies s to z (n times).
 '''
 subtract = λm. λn. m (λf. λx. n f (f x))
 sub = λm.λn.n pred m
 '''
 
-DIVISION:
+# DIVISION:
 A Church numeral n is a function that applies s to z (n times).
 Division is little bit complex because we can't divide by 0,we have to return error in this case.
 '''
