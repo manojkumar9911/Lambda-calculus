@@ -173,15 +173,17 @@ ss  = λp. pair (snd p) (plus one (snd p));
 prd = λm. fst (m ss zz);
 
 # SUBTRACTION:
-A Church numeral n is a function that applies s to z (n times).
+
+
 '''
 subtract = λm. λn. m (λf. λx. n f (f x))
 sub = λm.λn.n pred m
 '''
 
 # DIVISION:
-A Church numeral n is a function that applies s to z (n times).
-Division is little bit complex because we can't divide by 0,we have to return error in this case.
+
 '''
 div = λm.λn.if (isZero n) then (error "Division by zero") else (λf.λx.if (isZero m) then zero else succ (div (pred m) n) f x) 
 '''
+
+Division is little bit complex because we can't divide by 0,we have to return error in this case.
