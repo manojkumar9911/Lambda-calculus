@@ -63,6 +63,12 @@ or = λa. λb. a true b;
 ''' not = λa. a false true;
 '''
 
+# istrue
+istrue = λb.b true f alse
+
+# isfalse
+isfalse = λb.b f alse true
+
 # Pairs
 pair = λf.λs.λb. b f s;
 fst = λp. p tru;
@@ -175,11 +181,21 @@ prd = λm. fst (m ss zz);
 
 # SUBTRACTION:
 
-
 '''
 subtract = λm. λn. m (λf. λx. n f (f x))
 sub = λm.λn.n pred m
 '''
+'''
+
+subtract m n = n predecessor m
+# predecessor
+pred = λn.λf.λx.n (λg.λh.h (g f)) (λu.x) (λu.u)
+
+predecessor (n) {
+initialize p = pair 0 0
+do n times { p = next p }
+return first (p)
+}
 
 # DIVISION:
 
